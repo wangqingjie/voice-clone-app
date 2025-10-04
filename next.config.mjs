@@ -5,8 +5,11 @@ const nextConfig = {
 
   // 图片优化配置
   images: {
-    unoptimized: true, // Cloudflare Pages 需要
+    unoptimized: true,
   },
+  
+  // 禁用 trailing slash（确保路由正确）
+  trailingSlash: true,
 };
 
 export default nextConfig;
