@@ -7,4 +7,5 @@ const nextConfig = {
   trailingSlash: true,
 };
 
-export default nextConfig;
+module.exports = nextConfig;
+
