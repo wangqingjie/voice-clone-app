@@ -1,0 +1,38 @@
+name = "voice-clone-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# ===== 开发环境配置 =====
+[env.development]
+vars = { ENVIRONMENT = "development", AZURE_SPEECH_REGION = "eastus" }
+
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "voice-clone-db"
+database_id = "423dd8a9-1ab6-47b2-b288-6b2790aead1c"
+
+# ===== 生产环境配置 =====
+[env.production]
+vars = { ENVIRONMENT = "production", AZURE_SPEECH_REGION = "eastus" }
+
+# 生产数据库配置（部署时需要创建）
+# 运行: npx wrangler d1 create voice-clone-db-prod
+# 然后将生成的 database_id 填入下方
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "voice-clone-db-prod"
+database_id = "9962a1c7-579a-4491-88e1-fab45696e1a7"  # 部署时替换
+
+# ===== 注意事项 =====
+# 1. AZURE_SPEECH_KEY 密钥配置：
+#    - 开发环境: 在 .dev.vars 文件中配置
+#    - 生产环境: 使用命令 npx wrangler secret put AZURE_SPEECH_KEY --env production
+#
+# 2. 数据库迁移：
+#    - 开发: npx wrangler d1 execute voice-clone-db --file=./schema.sql --local
+#    - 生产: npx wrangler d1 execute voice-clone-db-prod --file=./schema.sql --remote
+#
+# 3. 部署命令：
+#    - 开发测试: npx wrangler dev
+#    - 生产部署: npx wrangler deploy --env production
+
