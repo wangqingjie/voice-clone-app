@@ -24,6 +24,9 @@ export function VoicesList() {
       <Card>
         <CardContent className="pt-6">
           <p className="text-center text-destructive">加载失败，请刷新页面重试</p>
+          <p className="text-center text-sm text-muted-foreground mt-2">
+            错误信息: {error.message || '未知错误'}
+          </p>
         </CardContent>
       </Card>
     )

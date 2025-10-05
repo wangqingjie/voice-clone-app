@@ -81,6 +81,7 @@ export function TTSForm() {
         console.log('[TTS Form] Audio URL set successfully')
       } else {
         console.error('[TTS Form] No audio data in response!')
+        throw new Error('服务器未返回音频数据')
       }
       
       toast.success('生成成功！', {
@@ -88,6 +89,7 @@ export function TTSForm() {
       })
     } catch (error) {
       console.error('TTS Error:', error)
+      setLoading(false) // 确保在错误时也重置loading状态
       toast.error('生成失败', {
         description: error instanceof Error ? error.message : '请稍后重试',
       })

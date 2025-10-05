@@ -18,6 +18,14 @@ class ApiClient {
       (response) => response,
       (error) => {
         console.error('API Error:', error)
+        // 添加更详细的错误信息
+        if (error.response) {
+          console.error('Response Error:', error.response.status, error.response.data)
+        } else if (error.request) {
+          console.error('Request Error:', error.request)
+        } else {
+          console.error('Error:', error.message)
+        }
         return Promise.reject(error)
       }
     )
@@ -59,6 +67,7 @@ class ApiClient {
 }
 
 export const apiClient = new ApiClient()
+
 
 
 
